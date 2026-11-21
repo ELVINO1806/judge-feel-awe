@@ -1,5 +1,5 @@
-import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { mkdirSync, writeFileSync } from "node:fs";
 
 const lines: string[] = [
   "One meteor crossed the field, then another,",
@@ -11,13 +11,16 @@ const lines: string[] = [
 ];
 
 function buildText(): string {
-  return lines.join("\n");
+  return [...lines, ""].join("\n");
 }
 
 function main(): void {
-  const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "output";
+  const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
   mkdirSync(outDir, { recursive: true });
-  writeFileSync(join(outDir, "entry.txt"), buildText(), "utf8");
+  const text = buildText();
+  const outPath = join(outDir, "entry.txt");
+  writeFileSync(outPath, text, "utf8");
+  console.log(`Wrote ${text.length} characters to ${outPath}`);
 }
 
 main();
