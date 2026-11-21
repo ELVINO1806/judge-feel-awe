@@ -1,5 +1,5 @@
-import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { mkdirSync, writeFileSync } from "node:fs";
 
 const lines: string[] = [
   "One meteor crossed the field, then another,",
